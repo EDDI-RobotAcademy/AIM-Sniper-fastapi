@@ -21,7 +21,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: send FASTAPI_FINISH_TRIGGER
+      - name: send FASTAPI_FINISH_TRIGGER_T
         run: |
           curl -S -X POST https://api.github.com/repos/${{ github.repository }}/dispatches \
               -H 'Accept: application/vnd.github.v3+json' \
