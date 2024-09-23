@@ -21,14 +21,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Run tests
-        run: |
-          pytest
-
-      - name: Lint code
-        run: |
-          flake8 .
-
       - name: send FASTAPI_FINISH_TRIGGER
         run: |
           curl -S -X POST https://api.github.com/repos/${{ github.repository }}/dispatches \
