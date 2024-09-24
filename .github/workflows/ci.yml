@@ -20,6 +20,13 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
+          
+      - name: Create .env file for CI
+        run: |
+          echo "HOST=${{ secrets.HOST }}" >> .env
+          echo "PORT=${{ secrets.PORT }}" >> .env
+          echo "FASTAPI_PORT=${{ secrets.FASTAPI_PORT }}" >> .env
+          echo "OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}" >> .env
 
       - name: send FASTAPI_FINISH_TRIGGER
         run: |
