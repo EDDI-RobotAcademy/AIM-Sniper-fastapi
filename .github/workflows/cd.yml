@@ -21,6 +21,10 @@ jobs:
         echo "MY_IP=${{ secrets.MY_IP }}" >> .env
         echo "OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}" >> .env
 
+    - name: Get Github Actions IP
+      id: ip
+      uses: haythem/public-ip@v1.2
+
     - name: Configure AWS IAM Credentials
       uses: aws-actions/configure-aws-credentials@v2
       with:
