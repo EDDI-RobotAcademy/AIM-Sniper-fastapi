@@ -18,6 +18,7 @@ jobs:
         echo "HOST=${{ secrets.HOST }}" >> .env
         echo "PORT=${{ secrets.PORT }}" >> .env
         echo "FASTAPI_PORT=${{ secrets.FASTAPI_PORT }}" >> .env
+        echo "MY_IP=${{ secrets.MY_IP }}" >> .env
         echo "OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}" >> .env
 
     - name: Configure AWS IAM Credentials
