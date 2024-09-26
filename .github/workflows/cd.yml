@@ -20,10 +20,6 @@ jobs:
         echo "FASTAPI_PORT=${{ secrets.FASTAPI_PORT }}" >> .env
         echo "OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}" >> .env
 
-    - name: Get Github Actions IP
-      id: ip
-      uses: haythem/public-ip@v1.2
-
     - name: Configure AWS IAM Credentials
       uses: aws-actions/configure-aws-credentials@v2
       with:
@@ -117,10 +113,6 @@ jobs:
           docker-compose pull
           docker-compose up -d
 
-    - name: Remove AWS Public IP From Security Group
+    - name: Remove Github Actions IP From Security Group
       run: |
-        aws ec2 revoke-security-group-ingress --group-id ${{ secrets.AWS_SECURITY_GROUP_ID }} --protocol tcp --port 22 --cidr ${{ secrets.HOST_PROD }}/32
-
-    # - name: Remove Github Actions IP From Security Group
-    #   run: |
-    #     aws ec2 revoke-security-group-ingress --group-id ${{ secrets.AWS_SECURITY_GROUP_ID }} --protocol tcp --port 22 --cidr ${{ steps.ip.outputs.ipv4 }}/32
+        aws ec2 revoke-security-group-ingress --group-id ${{ secrets.AWS_SECURITY_GROUP_ID }} --protocol tcp --port 22 --cidr ${{ steps.ip.outputs.ipv4 }}/32
