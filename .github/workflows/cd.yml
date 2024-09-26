@@ -20,6 +20,7 @@ jobs:
         echo "FASTAPI_PORT=${{ secrets.FASTAPI_PORT }}" >> .env
         echo "MY_IP=${{ secrets.MY_IP }}" >> .env
         echo "OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}" >> .env
+        echo "ALLOWED_ORIGINS=${{ secrets.ALLOWED_ORIGINS }}" >> .env
 
     - name: Get Github Actions IP
       id: ip
