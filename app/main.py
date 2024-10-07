@@ -12,4 +12,4 @@ app.include_router(openaiApiRouter)
 if __name__ == "__main__":
     import uvicorn
     myIp = os.getenv("MY_IP")
-    uvicorn.run(app, host=myIp, port=33333)
+    uvicorn.run(app, host=os.getenv('HOST'), port=int(os.getenv('FASTAPI_PORT')))
