@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 
 
-class OpenaiApiService(ABC):
+class TestService(ABC):
     @abstractmethod
-    def requestOpenaiApiResult(self):
+    def requestTestResult(self):
         pass

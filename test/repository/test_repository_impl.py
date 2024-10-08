@@ -1,12 +1,12 @@
 import json
 import queue
 
-from openai_api.repository.openai_api_repository import OpenaiApiRepository
+from test.repository.test_repository import TestRepository
 
 
-class OpenaiApiRepositoryImpl(OpenaiApiRepository):
+class TestRepositoryImpl(TestRepository):
     def getResult(self, userDefinedReceiverFastAPIChannel):
-        print(f"OpenaiApiRepositoryImpl getResult()")
+        print(f"TestRepositoryImpl getResult()")
 
         try:
             receivedResponseFromSocketClient = userDefinedReceiverFastAPIChannel.get(False)

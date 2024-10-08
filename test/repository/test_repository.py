@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 
 
-class OpenaiApiRepository(ABC):
+class TestRepository(ABC):
     @abstractmethod
     def getResult(self, userDefinedReceiverFastAPIChannel):
         pass

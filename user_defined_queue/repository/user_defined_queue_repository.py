@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 
 
-class OpenaiApiService(ABC):
+class UserDefinedQueueRepository(ABC):
     @abstractmethod
-    def requestOpenaiApiResult(self):
+    def create(self):
         pass
