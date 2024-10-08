@@ -29,6 +29,9 @@ jobs:
           echo "MY_IP=${{ secrets.MY_IP }}" >> .env
           echo "OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}" >> .env
           echo "ALLOWED_ORIGINS=${{ secrets.ALLOWED_ORIGINS }}" >> .env
+          echo "SERVER_CERTIFICATE=${{ secrets.SERVER_CERTIFICATE }}" >> .env
+          echo "SERVER_PRIVATE=${{ secrets.SERVER_PRIVATE }}" >> .env
+          echo "CLIENT_CA_CERTIFICATE=${{ secrets.CLIENT_CA_CERTIFICATE }}" >> .env
 
       - name: send FASTAPI_FINISH_TRIGGER
         run: |
