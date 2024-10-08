@@ -13,7 +13,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: Create .env file for Continuous Deploy
+    - name: Create .env file for CD
       run: |
         echo "HOST=${{ secrets.HOST }}" >> .env
         echo "PORT=${{ secrets.PORT }}" >> .env
