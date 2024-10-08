@@ -29,7 +29,7 @@ jobs:
       run: |
         echo "${{ secrets.SVR_CERT }}" | base64 --decode > svr.crt
         echo "${{ secrets.SVR_KEY }}" | base64 --decode > svr.key
-        echo "${{ secrets.CA_PEM }}" > CA.pem
+        echo "${{ secrets.CA_PEM }}" | base64 --decode > CA.pem
 
     - name: Check for created files
       run: |
