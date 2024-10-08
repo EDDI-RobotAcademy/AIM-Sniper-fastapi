@@ -95,3 +95,5 @@ jobs:
         push: true
         tags: ghcr.io/${{ github.actor }}/aim-fastapi-server:latest
         platforms: linux/arm64
+        build-args: |
+          --no-cache
