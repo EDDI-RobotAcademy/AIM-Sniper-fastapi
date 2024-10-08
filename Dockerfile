@@ -10,9 +10,9 @@ COPY requirements.txt .
 
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY svr.crt /etc/ssl/certs/svr.crt
-COPY svr.key /etc/ssl/private/svr.key
-COPY CA.pem /etc/ssl/certs/CA.pem
+COPY svr.crt .
+COPY svr.key .
+COPY CA.pem .
 
 EXPOSE 33333 37373
 
