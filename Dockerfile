@@ -10,9 +10,9 @@ COPY requirements.txt .
 
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY svr.crt .
-COPY svr.key .
-COPY CA.pem .
+COPY svr.crt ./svr.crt
+COPY svr.key ./svr.key
+COPY CA.pem ./CA.pem
 
 EXPOSE 33333 37373
 
