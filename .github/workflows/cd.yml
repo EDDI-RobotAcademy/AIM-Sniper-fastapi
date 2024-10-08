@@ -31,6 +31,10 @@ jobs:
         echo "${{ secrets.SVR_KEY }}" | base64 --decode > svr.key
         echo "${{ secrets.CA_PEM }}" | base64 --decode > CA.pem
 
+    - name: Check for created files
+      run: |
+        ls -l
+    
     - name: Configure AWS IAM Credentials
       uses: aws-actions/configure-aws-credentials@v2
       with:
