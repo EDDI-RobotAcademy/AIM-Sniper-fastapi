@@ -31,6 +31,9 @@ jobs:
         echo "${{ secrets.SVR_KEY }}" | base64 --decode > svr.key
         echo "${{ secrets.CA_PEM }}" | base64 --decode > CA.pem
 
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
     - name: Check for created files
       run: |
         ls -l
@@ -42,9 +45,6 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ${{ secrets.AWS_REGION }}
         
-    - name: Checkout repository
-      uses: actions/checkout@v3
-
     - name: Cache pip
       uses: actions/cache@v3
       with:
