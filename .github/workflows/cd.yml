@@ -21,9 +21,9 @@ jobs:
         echo "MY_IP=${{ secrets.MY_IP }}" >> .env
         echo "OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}" >> .env
         echo "ALLOWED_ORIGINS=${{ secrets.ALLOWED_ORIGINS }}" >> .env
-        echo "SERVER_CERTIFICATE=${{ secrets.SERVER_CERTIFICATE }}" >> .env
-        echo "SERVER_PRIVATE=${{ secrets.SERVER_PRIVATE }}" >> .env
-        echo "CLIENT_CA_CERTIFICATE=${{ secrets.CLIENT_CA_CERTIFICATE }}" >> .env
+        echo "SERVER_CERTIFICATE=svr.crt" >> .env
+        echo "SERVER_PRIVATE=svr.key" >> .env
+        echo "CLIENT_CA_CERTIFICATE=CA.pem" >> .env
 
     - name: Create certificate files
       run: |
