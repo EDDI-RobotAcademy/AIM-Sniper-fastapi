@@ -9,6 +9,7 @@ from dotenv import load_dotenv
 from fastapi import FastAPI
 
 from openai_api.controller.openai_api_controller import openaiApiRouter
+from polyglot_temp.controller.polyglot_controller import polyglotRouter
 from test.controller.test_controller import testRouter
 from user_defined_initializer.init import UserDefinedInitializer
 
@@ -44,6 +45,7 @@ app.include_router(diceResultRouter)
 
 app.include_router(openaiApiRouter)
 app.include_router(testRouter)
+app.include_router(polyglotRouter)
 
 if __name__ == "__main__":
     colorama.init(autoreset=True)
