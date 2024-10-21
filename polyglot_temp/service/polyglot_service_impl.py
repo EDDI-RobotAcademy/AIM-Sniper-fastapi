@@ -19,3 +19,8 @@ class PolyglotServiceImpl(PolyglotService):
         userDefinedReceiverFastAPIChannel = self.__userDefinedQueueRepository.getUserDefinedSocketReceiverFastAPIChannel()
         ColorPrinter.print_important_data("userDefinedReceiverFastAPIChannel", userDefinedReceiverFastAPIChannel)
         return self.__polyglotRepository.getResult(userDefinedReceiverFastAPIChannel)
+
+    def requestScore(self):
+        userDefinedReceiverFastAPIChannel = self.__userDefinedQueueRepository.getUserDefinedSocketReceiverFastAPIChannel()
+        ColorPrinter.print_important_data("userDefinedReceiverFastAPIChannel", userDefinedReceiverFastAPIChannel)
+        return self.__polyglotRepository.requestScore(userDefinedReceiverFastAPIChannel)

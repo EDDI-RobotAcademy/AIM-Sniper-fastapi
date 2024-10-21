@@ -26,3 +26,9 @@ def requestNextQuestion(polyglotService: PolyglotServiceImpl =
     nextQuestion = polyglotService.requestNextQuestion()
 
     return JSONResponse(content=nextQuestion, status_code=status.HTTP_200_OK)
+
+@polyglotRouter.get('/polyglot-score-result')
+def requestScore(polyglotService: PolyglotServiceImpl = Depends(injectPolyglotService)):
+    ColorPrinter.print_important_message("requestScore()")
+    scoreResult = polyglotService.requestScore()
+    return JSONResponse(content=scoreResult, status_code=status.HTTP_200_OK)
