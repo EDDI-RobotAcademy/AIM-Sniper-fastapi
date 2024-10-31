@@ -5,7 +5,6 @@ from report_to_db.repository.report_to_db_repository_impl import ReportToDbRepos
 from report_to_db.service.report_to_db_service import ReportToDbService
 
 from api.django_http_client import DjangoHttpClient
-from report_to_db.service.request.report_to_db_request import ReportToDbRequest
 
 from user_defined_queue.repository.user_defined_queue_repository_impl import UserDefinedQueueRepositoryImpl
 
