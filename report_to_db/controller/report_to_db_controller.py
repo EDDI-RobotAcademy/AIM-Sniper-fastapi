@@ -4,7 +4,6 @@ import sys
 from fastapi import APIRouter, Depends, status
 from fastapi.responses import JSONResponse
 
-from report_to_db.controller.request_form.report_to_db_request_form import ReportToDbRequestForm
 from report_to_db.service.report_to_db_service_impl import ReportToDbServiceImpl
 from user_defined_queue.repository.user_defined_queue_repository_impl import UserDefinedQueueRepositoryImpl
 
