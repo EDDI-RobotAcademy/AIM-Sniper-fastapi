@@ -21,10 +21,23 @@ jobs:
         echo "MY_IP=${{ secrets.MY_IP }}" >> .env
         echo "OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}" >> .env
         echo "ALLOWED_ORIGINS=${{ secrets.ALLOWED_ORIGINS }}" >> .env
-        echo "SERVER_CERTIFICATE=${{ secrets.SERVER_CERTIFICATE }}" >> .env
-        echo "SERVER_PRIVATE=${{ secrets.SERVER_PRIVATE }}" >> .env
-        echo "CLIENT_CA_CERTIFICATE=${{ secrets.CLIENT_CA_CERTIFICATE }}" >> .env
+        echo "SERVER_CERTIFICATE=svr.crt" >> .env
+        echo "SERVER_PRIVATE=svr.key" >> .env
+        echo "CLIENT_CA_CERTIFICATE=CA.pem" >> .env
 
+    - name: Create certificate files
+      run: |
+        echo "${{ secrets.SVR_CERT }}" | base64 --decode > svr.crt
+        echo "${{ secrets.SVR_KEY }}" | base64 --decode > svr.key
+        echo "${{ secrets.CA_PEM }}" | base64 --decode > CA.pem
+
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Check for created files
+      run: |
+        ls -l
+    
     - name: Configure AWS IAM Credentials
       uses: aws-actions/configure-aws-credentials@v2
       with:
@@ -32,8 +45,25 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ${{ secrets.AWS_REGION }}
         
-    - name: Checkout repository
-      uses: actions/checkout@v3
+    - name: Cache pip
+      uses: actions/cache@v3
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
+
+    - name: Install Dependencies
+      run: |
+        if [ -f requirements.txt ]; then
+          python -m venv .venv
+          source .venv/bin/activate
+          pip install --upgrade pip
+          pip install -r requirements.txt
+        else
+          echo "requirements.txt not found"
+          exit 1
+        fi
 
     - name: Configure Docker
       uses: docker/setup-buildx-action@v1
@@ -65,3 +95,5 @@ jobs:
         push: true
         tags: ghcr.io/${{ github.actor }}/aim-fastapi-server:latest
         platforms: linux/arm64
+        build-args: |
+          --no-cache
